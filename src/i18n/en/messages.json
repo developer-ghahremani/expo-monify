@@ -2,5 +2,6 @@
   "codeSent": "Code sent successfully",
   "sentCodeSuccessfully": "Sent code successfully",
   "welcome": "Welcome",
-  "required": "{{fieldName}} is required"
+  "required": "{{fieldName}} is required",
+  "length": "Length for {{fieldName}} should be {{length}} characters."
 }
