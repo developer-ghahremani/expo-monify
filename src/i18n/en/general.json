@@ -1,0 +1,19 @@
+{
+  "hi": "HIIII",
+  "login": "Login",
+  "monify": "Monify",
+  "loginSlug": "Enter your number to login or create an account.",
+  "mobile": "Mobile",
+  "submit": "Submit",
+  "code": "Code",
+  "enterCode": "Enter the SMS code",
+  "userDetail": "User detail",
+  "logOut": "Log out",
+  "firstName": "Firstame",
+  "lastName": "Lastname",
+  "wallet": "Wallet",
+  "source": "Source",
+  "wallets": "Wallets",
+  "sources": "Sources",
+  "home": "Home"
+}
