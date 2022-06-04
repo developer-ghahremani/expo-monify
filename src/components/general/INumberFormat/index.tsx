@@ -9,7 +9,7 @@ const INumberFormat = (props: Props) => {
   return (
     <NumberFormat
       {...props}
-      renderText={(formated) => <IText>{formated}</IText>}
+      renderText={(formated) => <IText style={props.style}>{formated}</IText>}
     />
   );
 };

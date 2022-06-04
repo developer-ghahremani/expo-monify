@@ -1,4 +1,4 @@
-import { Transactions, Wallet } from "@src/components/Home";
+import { Sources, Transactions, Wallet } from "@src/components/Home";
 
 import { Container } from "@src/components/general";
 import { MainLayout } from "@src/components/layout";
@@ -14,6 +14,7 @@ const HomeScreen = () => {
         <Wallet />
         <Container style={tailwind("px-4 mt-4")}>
           <Transactions />
+          <Sources />
         </Container>
       </ScrollView>
     </MainLayout>
