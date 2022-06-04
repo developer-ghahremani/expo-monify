@@ -8,6 +8,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import React from "react";
 import { TailwindProvider } from "tailwind-rn";
+import Toast from "react-native-toast-message";
 import utilities from "./tailwind.json";
 
 const App = (): JSX.Element => {
@@ -18,6 +19,7 @@ const App = (): JSX.Element => {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <Monify />
+          <Toast position="top" />
         </PersistGate>
       </Provider>
     </TailwindProvider>

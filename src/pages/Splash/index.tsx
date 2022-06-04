@@ -5,7 +5,9 @@ import { MainLayout } from "@src/components/layout";
 import React from "react";
 import { pageNames } from "@src/cosntant";
 import { setUser } from "@src/store/user";
+import { showMessage } from "@src/utils/message";
 import { useEffect } from "react";
+import { useI18Next } from "@src/i18n";
 import { useNavigation } from "@react-navigation/native";
 import { useTailwind } from "tailwind-rn/dist";
 import { useWhoAmIMutation } from "@src/store/service/auth";
@@ -17,6 +19,7 @@ const SplashScreen = () => {
   const user = useAppSelector((s) => s.user);
   const dispatch = useAppDispatch();
   const [whoAmI] = useWhoAmIMutation();
+  const { t } = useI18Next();
 
   useEffect(() => {
     if (user.token) return handleGetUser();
@@ -31,6 +34,11 @@ const SplashScreen = () => {
     try {
       const data = await whoAmI().unwrap();
       dispatch(setUser({ ...user, ...data }));
+      showMessage({
+        text1: t("messages.welcome", {
+          name: data.firstName ? data.firstName : data.mobile,
+        }),
+      });
       reset({ index: 0, routes: [{ name: pageNames.home.index }] });
     } catch (error) {
       console.log(error);
