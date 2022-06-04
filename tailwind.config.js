@@ -9,6 +9,11 @@ module.exports = {
         lightGray: "#ECECEC",
         darkGray: "#707070",
       },
+      fontFamily: {
+        "vazir-base": ["vazir"],
+        "vazir-bold": ["vazir-bold"],
+        "vazir-black": ["vazir-black"],
+      },
     },
   },
   plugins: [],

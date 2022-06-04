@@ -4,11 +4,13 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { pageNames } from "@src/cosntant";
 import routes from "./routes";
+import { useI18Next } from "@src/i18n";
 import { useTailwind } from "tailwind-rn/dist";
 
 const HomeScreen = () => {
   const Stack = createBottomTabNavigator();
   const tailwind = useTailwind();
+  const { t } = useI18Next();
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
@@ -22,7 +24,7 @@ const HomeScreen = () => {
                 style={tailwind(
                   `${focused ? "text-primary" : "text-gray-500"}`
                 )}>
-                {route.label}
+                {t(`general.${route.label}`)}
               </IText>
             ),
             tabBarIcon: ({ focused }) => (

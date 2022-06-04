@@ -1,14 +1,21 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Transactions, Wallet } from "@src/components/Home";
 
+import { Container } from "@src/components/general";
 import { MainLayout } from "@src/components/layout";
 import React from "react";
+import { ScrollView } from "react-native";
+import { useTailwind } from "tailwind-rn/dist";
 
-type Props = {};
-
-const HomeScreen = (props: Props) => {
+const HomeScreen = () => {
+  const tailwind = useTailwind();
   return (
     <MainLayout>
-      <Text>HomeScreen</Text>
+      <ScrollView>
+        <Wallet />
+        <Container style={tailwind("px-4 mt-4")}>
+          <Transactions />
+        </Container>
+      </ScrollView>
     </MainLayout>
   );
 };

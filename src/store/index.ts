@@ -13,6 +13,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import auth from "./auth";
+import { selectedWallet } from "./selectedWallet";
 import service from "./service";
 import user from "./user";
 
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   [user.name]: user.reducer,
   [service.reducerPath]: service.reducer,
   [auth.name]: auth.reducer,
+  [selectedWallet.name]: selectedWallet.reducer,
 });
 
 const persistedReducer = persistReducer(
