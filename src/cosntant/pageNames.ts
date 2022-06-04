@@ -1,6 +1,6 @@
 const pageNames = {
   splash: "/splash",
-  home: "/home",
-  auth: { sendSMS: "/auth/sendSMS" },
+  home: { home: "/home/home", index: "/home", settings: "/home/settings" },
+  auth: { sendSMS: "/auth/sendSMS", sendCode: "/auth/sendCode" },
 };
 export default pageNames;

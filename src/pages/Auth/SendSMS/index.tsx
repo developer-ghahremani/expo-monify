@@ -1,19 +1,24 @@
 import * as yup from "yup";
 
 import { Container, IButton, IInput, IText } from "@src/components/general";
-import { StyleSheet, Text, View } from "react-native";
 
 import { Formik } from "formik";
 import { MainLayout } from "@src/components/layout";
 import React from "react";
+import { changeAuthStep } from "@src/store/auth";
+import { pageNames } from "@src/cosntant";
+import { useAppDispatch } from "@src/store";
 import { useI18Next } from "@src/i18n";
-import { useSendAuthMutation } from "@src/store/service/auth";
+import { useNavigation } from "@react-navigation/native";
+import { useSendAuthSMSMutation } from "@src/store/service/auth";
 import { useTailwind } from "tailwind-rn/dist";
 
 const AuthSendSMS = () => {
   const tailwind = useTailwind();
   const { t } = useI18Next();
-  const [sendSMS] = useSendAuthMutation();
+  const [sendSMS] = useSendAuthSMSMutation();
+  const dispatch = useAppDispatch();
+  const { navigate } = useNavigation();
 
   const validationSchema = yup.object({
     mobile: yup
@@ -27,12 +32,14 @@ const AuthSendSMS = () => {
 
   const handleFinish = async (params: { mobile: string }) => {
     try {
-      const data = await sendSMS(params).unwrap();
-      console.log(data);
+      await sendSMS(params).unwrap();
+      dispatch(changeAuthStep({ step: 2, mobile: params.mobile }));
+      navigate(pageNames.auth.sendCode);
     } catch (error) {
       console.log(error);
     }
   };
+
   return (
     <MainLayout>
       <Container style={tailwind("h-full justify-between")}>
@@ -56,11 +63,9 @@ const AuthSendSMS = () => {
                   onChangeText={handleChange("mobile")}
                   error={touched.mobile && errors.mobile}
                 />
-                <IButton
-                  label={t("general.submit")}
-                  onPress={handleSubmit}
-                  style={tailwind("mt-4")}
-                />
+                <IButton onPress={handleSubmit} style={tailwind("mt-4")}>
+                  {t("general.submit")}
+                </IButton>
               </Container>
             )}
           </Formik>
@@ -72,5 +77,3 @@ const AuthSendSMS = () => {
 };
 
 export default AuthSendSMS;
-
-const styles = StyleSheet.create({});

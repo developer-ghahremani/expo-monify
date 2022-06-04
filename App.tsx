@@ -1,27 +1,27 @@
-import "./src/i18n";
+import "@src/i18n";
 
-import { LogBox, StyleSheet, Text } from "react-native";
-import { TailwindProvider, useTailwind } from "tailwind-rn";
+import store, { persistor } from "@src/store";
 
+import { LogBox } from "react-native";
 import Monify from "./src/Monify";
+import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import store from "@src/store";
+import { TailwindProvider } from "tailwind-rn";
 import utilities from "./tailwind.json";
 
-const App = () => {
+const App = (): JSX.Element => {
   LogBox.ignoreAllLogs();
 
   return (
-    <Provider store={store}>
-      <TailwindProvider utilities={utilities}>
-        <Monify />
-      </TailwindProvider>
-    </Provider>
+    <TailwindProvider utilities={utilities}>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Monify />
+        </PersistGate>
+      </Provider>
+    </TailwindProvider>
   );
 };
 
 export default App;
-
-const styles = StyleSheet.create({});
