@@ -8,8 +8,22 @@
   margin-right: 2rem
 }
 
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem
+}
+
+.mx-0 {
+  margin-left: 0px;
+  margin-right: 0px
+}
+
 .mt-4 {
   margin-top: 1rem
+}
+
+.mt-2 {
+  margin-top: 0.5rem
 }
 
 .flex {
@@ -68,13 +82,26 @@
   border-radius: 0.75rem
 }
 
+.rounded {
+  border-radius: 0.25rem
+}
+
 .border {
   border-width: 1px
+}
+
+.border-2 {
+  border-width: 2px
 }
 
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity))
+}
+
+.border-gray-light {
+  --tw-border-opacity: 1;
+  border-color: rgb(239 239 239 / var(--tw-border-opacity))
 }
 
 .bg-gray-light {
@@ -85,6 +112,11 @@
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+}
+
+.bg-primary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(53 168 148 / var(--tw-bg-opacity))
 }
 
 .p-4 {
@@ -121,6 +153,10 @@
 
 .font-vazir-base {
   font-family: vazir
+}
+
+.font-vazir-bold {
+  font-family: vazir-bold
 }
 
 .text-xl {
@@ -165,4 +201,9 @@
 .text-rose-800 {
   --tw-text-opacity: 1;
   color: rgb(159 18 57 / var(--tw-text-opacity))
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity))
 }
