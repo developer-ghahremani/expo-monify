@@ -16,6 +16,7 @@ import {
 
 import { CloseIcon } from "@src/components/icons";
 import { Formik } from "formik";
+import { Header2 } from "@src/components/layout";
 import React from "react";
 import { toggleWalletModal } from "@src/store/modal";
 import { useGetFinancialUnitQuery } from "@src/store/service/financialUnit";
@@ -76,12 +77,7 @@ const AddWallet = () => {
 
   return (
     <IBottomSheetModal onClose={handleClose} visible={wallet.visible}>
-      <Container style={tailwind("flex flex-row items-center")}>
-        <CloseIcon size={20} onPress={handleClose} />
-        <IText style={tailwind("font-vazir-bold text-lg mx-4")}>
-          {t("general.addWallet")}
-        </IText>
-      </Container>
+      <Header2 title={t("general.addWallet")} onPressClose={handleClose} />
       <Formik
         enableReinitialize
         validationSchema={validationSchema}

@@ -36,7 +36,11 @@ const ModalPicker = (props: Props) => {
                 style={tailwind("flex flex-row justify-between items-center")}>
                 <IText style={tailwind("text-lg")}>{item.label}</IText>
                 {item.value === props.value && (
-                  <CheckMark style={tailwind("text-primary")} size={25} />
+                  <CheckMark
+                    type="circle"
+                    style={tailwind("text-primary")}
+                    size={25}
+                  />
                 )}
               </Container>
               <Container style={tailwind("h-[1.5px] bg-gray-light")} />

@@ -1,9 +1,9 @@
 import "@src/i18n";
 
+import { AddSource, AddWallet } from "@src/components/modals";
 import { I18nManager, LogBox } from "react-native";
 import store, { persistor } from "@src/store";
 
-import { AddWallet } from "@src/components/modals";
 import Monify from "./src/Monify";
 import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
@@ -34,6 +34,7 @@ const App = () => {
         <PersistGate loading={null} persistor={persistor}>
           <Monify />
           <AddWallet />
+          <AddSource />
           <Toast position="top" />
         </PersistGate>
       </Provider>

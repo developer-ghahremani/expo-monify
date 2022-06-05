@@ -10,6 +10,9 @@ const pageNames = {
   wallet: {
     list: "/wallet/list",
   },
+  source: {
+    list: "/source/list",
+  },
   category: {
     list: "/category/list",
   },

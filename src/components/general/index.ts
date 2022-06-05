@@ -7,3 +7,6 @@ export { default as ITouchable } from "./ITouchable";
 export { default as IFlatList } from "./IFlatList";
 export { default as IBottomSheetModal } from "./IBottomSheet";
 export { default as IPicker } from "./IPicker";
+export { default as AddButton } from "./AddButton";
+export { default as IRadioButton } from "./IRadioButton";
+export { default as IInputNumberFormat } from "./IInputNumberFormat";

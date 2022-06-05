@@ -9,6 +9,7 @@ import { useTailwind } from "tailwind-rn/dist";
 
 const options: { title: string; path: string }[] = [
   { title: "wallets", path: pageNames.wallet.list },
+  { title: "sources", path: pageNames.source.list },
   { title: "categories", path: pageNames.category.list },
   { title: "transactions", path: pageNames.transaction.list },
 ];

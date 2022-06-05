@@ -50,7 +50,7 @@ const Transactions = () => {
 
   return (
     <Container style={tailwind("bg-white p-4 rounded-xl")}>
-      <Container style={tailwind("flex flex-row gap-4")}>
+      <Container style={tailwind("flex flex-row")}>
         {options.map((item, index) => (
           <ITouchable
             onPress={() => handleChangeFromDate(item.title)}

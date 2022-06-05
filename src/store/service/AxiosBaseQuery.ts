@@ -18,7 +18,7 @@ api.interceptors.request.use((cnf: AxiosRequestConfig) => {
 
   if (store.getState().user.token)
     headers.Authorization = store.getState().user.token;
-  console.log(cnf, "CNF");
+  // console.log(cnf, "CNF");
 
   return cnf;
 });

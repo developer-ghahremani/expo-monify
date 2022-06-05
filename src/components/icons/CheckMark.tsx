@@ -8,10 +8,12 @@ type Props = {
   color?: string;
   onPress?: () => void;
   style?: StyleProp<TextStyle>;
+  type?: "circle";
 };
 
-const CheckMarkIcon = (props: Props) => (
-  <Ionicons name="checkmark-circle" {...props} />
-);
+const CheckMarkIcon = ({ type, ...props }: Props) => {
+  if (type === "circle") return <Ionicons name="checkmark-circle" {...props} />;
+  return <Ionicons name="checkmark" {...props} />;
+};
 
 export default CheckMarkIcon;
