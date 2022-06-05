@@ -1,4 +1,4 @@
-import { TextInput, TextInputProps } from "react-native";
+import { StyleProp, TextInput, TextInputProps, ViewStyle } from "react-native";
 
 import Container from "../Container";
 import IText from "../IText";
@@ -8,19 +8,20 @@ import { useTailwind } from "tailwind-rn/dist";
 interface Props extends TextInputProps {
   label?: string;
   error?: string | boolean;
+  inputStyle?: StyleProp<ViewStyle>;
 }
 
-const IInput = ({ style, label, error, ...props }: Props) => {
+const IInput = ({ style, inputStyle, label, error, ...props }: Props) => {
   const tailwind = useTailwind();
   return (
-    <Container>
+    <Container style={style}>
       {label && <IText style={tailwind("text-sm")}>{label}</IText>}
       <TextInput
         style={[
           tailwind(
             "py-1 border rounded-md border-gray-300 text-center text-black text-base"
           ),
-          style,
+          inputStyle,
         ]}
         {...props}
       />

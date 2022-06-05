@@ -7,5 +7,14 @@ const pageNames = {
     transactions: "/home/transactions",
   },
   auth: { sendSMS: "/auth/sendSMS", sendCode: "/auth/sendCode" },
+  wallet: {
+    list: "/wallet/list",
+  },
+  category: {
+    list: "/category/list",
+  },
+  transaction: {
+    list: "/transaction/list",
+  },
 };
 export default pageNames;

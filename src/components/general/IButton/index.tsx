@@ -8,7 +8,9 @@ import IText from "../IText";
 import React from "react";
 import { useTailwind } from "tailwind-rn/dist";
 
-interface Props extends TouchableOpacityProps {}
+interface Props extends TouchableOpacityProps {
+  label?: string;
+}
 
 const IButton = ({ label, style, children, ...props }: Props) => {
   const tailwind = useTailwind();

@@ -14,10 +14,12 @@ api.interceptors.request.use((cnf: AxiosRequestConfig) => {
     p[key] = cnf.data[key];
   }
 
-  cnf.data = p;
+  // cnf.data = p;
 
   if (store.getState().user.token)
     headers.Authorization = store.getState().user.token;
+  console.log(cnf, "CNF");
+
   return cnf;
 });
 

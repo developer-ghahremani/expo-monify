@@ -2,3 +2,8 @@ export { default as BackIcon } from "./Back";
 export { default as HomeIcon } from "./Home";
 export { default as SettingIcon } from "./Setting";
 export { default as NotificationIcon } from "./Notification";
+export { default as DownIcon } from "./Down";
+export { default as UpIcon } from "./Up";
+export { default as CloseIcon } from "./Close";
+export { default as CheckMark } from "./CheckMark";
+export { default as PlusIcon } from "./Plus";
