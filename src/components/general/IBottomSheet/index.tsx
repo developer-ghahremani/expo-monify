@@ -6,7 +6,7 @@ import React from "react";
 import { useTailwind } from "tailwind-rn/dist";
 
 interface Props extends BottomSheetProps {
-  children: React.ReactChild;
+  children: React.ReactNode;
   height?: string;
   onClose: () => void;
 }

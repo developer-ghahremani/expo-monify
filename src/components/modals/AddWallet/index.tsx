@@ -9,15 +9,17 @@ import {
   IText,
 } from "@src/components/general";
 import { useAppDispatch, useAppSelector } from "@src/store";
+import {
+  usePatchWalletMutation,
+  usePostWalletMutation,
+} from "@src/store/service/wallet";
 
 import { CloseIcon } from "@src/components/icons";
 import { Formik } from "formik";
 import React from "react";
-import { showMessage } from "@src/utils/message";
 import { toggleWalletModal } from "@src/store/modal";
 import { useGetFinancialUnitQuery } from "@src/store/service/financialUnit";
 import { useI18Next } from "@src/i18n";
-import { usePostWalletMutation } from "@src/store/service/wallet";
 import { useTailwind } from "tailwind-rn/dist";
 
 const AddWallet = () => {
@@ -27,6 +29,7 @@ const AddWallet = () => {
   const { wallet } = useAppSelector((s) => s.modal);
   const dispatch = useAppDispatch();
   const [postWallet, { isLoading }] = usePostWalletMutation();
+  const [patchWallet, { isLoading: isEditLoading }] = usePatchWalletMutation();
   const validationSchema = yup.object({
     name: yup
       .string()
@@ -42,12 +45,29 @@ const AddWallet = () => {
     financialUnitId: string;
     name: string;
   }) => {
-    try {
-      await postWallet(params).unwrap();
-      handleClose();
-    } catch (error) {
-      console.log(errror);
-    }
+    const handleAdd = async () => {
+      try {
+        await postWallet(params).unwrap();
+        handleClose();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const handlEdit = async () => {
+      try {
+        await patchWallet({
+          ...params,
+          walletId: wallet.selectedWallet?._id || "",
+        }).unwrap();
+        handleClose();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (!wallet.selectedWallet?._id) return handleAdd();
+    handlEdit();
   };
 
   const handleClose = () => {
@@ -63,16 +83,21 @@ const AddWallet = () => {
         </IText>
       </Container>
       <Formik
+        enableReinitialize
         validationSchema={validationSchema}
-        initialValues={{ financialUnitId: "", name: "" }}
+        initialValues={{
+          financialUnitId: wallet.selectedWallet?.financialUnitId?._id || "",
+          name: wallet.selectedWallet?.name || "",
+        }}
         onSubmit={handleFinish}>
         {({ errors, touched, handleChange, handleSubmit, values }) => (
           <Container>
             <IInput
-              label={t("general.name")}
+              value={values.name}
               style={tailwind("mt-4")}
-              onChangeText={handleChange("name")}
+              label={t("general.name")}
               error={touched.name && errors.name}
+              onChangeText={handleChange("name")}
             />
             {!isFetching && !!data && (
               <IPicker
@@ -90,7 +115,7 @@ const AddWallet = () => {
             <IButton onPress={handleSubmit} style={tailwind("mt-4 bg-primary")}>
               {t("general.submit")}
             </IButton>
-            {isLoading && <IText>loading</IText>}
+            {(isLoading || isEditLoading) && <IText>loading</IText>}
           </Container>
         )}
       </Formik>

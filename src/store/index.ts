@@ -17,6 +17,7 @@ import modal from "./modal";
 import { selectedWallet } from "./selectedWallet";
 import service from "./service";
 import user from "./user";
+import { walletMiddleware } from "./service/wallet";
 
 const rootReducer = combineReducers({
   [user.name]: user.reducer,
@@ -43,7 +44,7 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(service.middleware),
+    }).concat(service.middleware, walletMiddleware),
 });
 
 export let persistor = persistStore(store);

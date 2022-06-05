@@ -5,17 +5,14 @@ import {
   IText,
   ITouchable,
 } from "@src/components/general";
-import {
-  useGetWalletListQuery,
-  useGetWalletsMutation,
-} from "@src/store/service/wallet";
 
 import { MainLayout } from "@src/components/layout";
 import React from "react";
-import { Text } from "react-native";
+import { WalletInterface } from "@src/models/wallet.model";
 import { WalletItem } from "@src/components/items";
 import { toggleWalletModal } from "@src/store/modal";
 import { useAppDispatch } from "@src/store";
+import { useGetWalletListQuery } from "@src/store/service/wallet";
 import { useI18Next } from "@src/i18n";
 import { useNavigation } from "@react-navigation/native";
 import { useTailwind } from "tailwind-rn/dist";
@@ -28,7 +25,11 @@ const Wallets = () => {
   const { goBack } = useNavigation();
 
   const handleWalletModal = () => {
-    dispatch(toggleWalletModal());
+    dispatch(toggleWalletModal({}));
+  };
+
+  const handleClickWallet = (wallet: WalletInterface) => {
+    dispatch(toggleWalletModal(wallet));
   };
 
   return (
@@ -50,7 +51,9 @@ const Wallets = () => {
           <IFlatList
             style={tailwind("mt-4")}
             data={data}
-            renderItem={({ item }) => <WalletItem wallet={item} />}
+            renderItem={({ item }) => (
+              <WalletItem onPress={handleClickWallet} wallet={item} />
+            )}
           />
         )}
       </Container>

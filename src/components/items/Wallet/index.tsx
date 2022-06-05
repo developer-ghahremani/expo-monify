@@ -1,17 +1,28 @@
-import { Container, INumberFormat, IText } from "@src/components/general";
-import { Text, View } from "react-native";
+import {
+  Container,
+  INumberFormat,
+  IText,
+  ITouchable,
+} from "@src/components/general";
 
 import React from "react";
 import { WalletInterface } from "@src/models/wallet.model";
 import { useTailwind } from "tailwind-rn/dist";
 
-type Props = { wallet: WalletInterface };
+type Props = {
+  wallet: WalletInterface;
+  onPress?: (wallet: WalletInterface) => void;
+};
 
 const WalletItem = (props: Props) => {
   const tailwind = useTailwind();
 
+  const handleClickWallet = () => {
+    props.onPress && props.onPress(props.wallet);
+  };
+
   return (
-    <Container>
+    <ITouchable onPress={handleClickWallet}>
       <Container style={tailwind("flex flex-col items-start")}>
         <IText style={tailwind("text-base")}>{props.wallet.name}</IText>
         <INumberFormat
@@ -23,7 +34,7 @@ const WalletItem = (props: Props) => {
         />
       </Container>
       <Container style={tailwind("h-[1px] bg-primary")}></Container>
-    </Container>
+    </ITouchable>
   );
 };
 

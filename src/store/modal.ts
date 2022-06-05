@@ -1,5 +1,7 @@
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+
 import { WalletInterface } from "@src/models/wallet.model";
-import { createSlice } from "@reduxjs/toolkit";
+
 interface ModalInterface {
   wallet: {
     visible: boolean;
@@ -15,8 +17,14 @@ const modal = createSlice({
   initialState,
   name: "modal",
   reducers: {
-    toggleWalletModal: (state) => {
-      return { wallet: { ...state.wallet, visible: !state.wallet.visible } };
+    toggleWalletModal: (state, action: PayloadAction<WalletInterface | {}>) => {
+      return {
+        wallet: {
+          ...state.wallet,
+          visible: !state.wallet.visible,
+          selectedWallet: action.payload,
+        },
+      };
     },
   },
 });
