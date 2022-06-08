@@ -21,7 +21,7 @@ const IRadioButton = (props: Props) => {
       style={tailwind("flex flex-row items-center")}>
       <Container
         style={tailwind(
-          `w-4 h-4 rounded-base border flex- justify-center items-center ${
+          `w-4 h-4 rounded border justify-center items-center ${
             props.checked
               ? "bg-primary border-primary"
               : "bg-white border-darkGray"

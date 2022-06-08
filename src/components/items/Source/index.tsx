@@ -16,7 +16,7 @@ const SourceItem = (props: Props) => {
       )}>
       <IText>{props.source.name}</IText>
       <INumberFormat
-        style={tailwind("font-vazir-bold text-md")}
+        style={tailwind("font-vazir-bold")}
         displayType="text"
         value={props.source.amount}
         thousandSeparator

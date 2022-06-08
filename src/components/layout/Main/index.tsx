@@ -12,13 +12,13 @@ type Props = {
 
 const MainLayout = (props: Props) => {
   const tailwind = useTailwind();
-  const user = useAppSelector((s) => s.user);
+  // const user = useAppSelector((s) => s.user);
   const [getWallets] = useGetWalletsMutation();
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    handleGetWallets();
-  }, [user]);
+  // useEffect(() => {
+  //   handleGetWallets();
+  // }, [user]);
 
   const handleGetWallets = async () => {
     try {

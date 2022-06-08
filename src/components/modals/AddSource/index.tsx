@@ -4,6 +4,7 @@ import {
   IButton,
   IInput,
   IInputNumberFormat,
+  INumberFormat,
   IRadioButton,
   IText,
 } from "@src/components/general";
@@ -13,6 +14,7 @@ import { useAppDispatch, useAppSelector } from "@src/store";
 import { Formik } from "formik";
 import { Header2 } from "@src/components/layout";
 import { SourceType } from "@src/cosntant";
+import { setSelectedWallet } from "@src/store/selectedWallet";
 import { toggleSourceModal } from "@src/store/modal";
 import { useI18Next } from "@src/i18n";
 import { usePostSourceMutation } from "@src/store/service/source";
@@ -48,6 +50,14 @@ const AddSource = () => {
         type: sourceType,
         walletId: selectedWallet._id || "",
       }).unwrap();
+
+      dispatch(
+        setSelectedWallet({
+          ...selectedWallet,
+          amount:
+            +selectedWallet.amount + +params.initialAmount.split(",").join(""),
+        })
+      );
       handleClose();
     } catch (error) {
       console.log(error);
@@ -58,6 +68,11 @@ const AddSource = () => {
     <IBottomSheetModal visible={source.visible} onClose={handleClose}>
       <Header2 title={t("general.addSource")} onPressClose={handleClose} />
       <Container style={tailwind("flex mt-4")}>
+        <INumberFormat
+          thousandSeparator
+          value={selectedWallet.amount}
+          displayType="text"
+        />
         <IText style={tailwind("text-base font-vazir-bold")}>
           {t("general.sourceType")}
         </IText>

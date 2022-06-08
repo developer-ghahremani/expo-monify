@@ -44,11 +44,13 @@ export const walletMiddleware: Middleware =
   ({ dispatch, getState }) =>
   (next) =>
   (action) => {
+    // console.log(action.type, action.meta?.["arg"]?.["endpointName"], "STATE");
     if (
       action.type === "service/executeQuery/fulfilled" &&
       (action.meta.arg.endpointName === "getWalletList" ||
-        action.meta.arg.endpointName === "patchWallet")
-    )
+        // action.meta.arg.endpointName === "patchWallet")||
+        action.meta.arg.endpointName === "getWallets")
+    ) {
       dispatch(
         setSelectedWallet({
           ...getState().selectedWallet,
@@ -58,6 +60,7 @@ export const walletMiddleware: Middleware =
           ),
         })
       );
+    }
 
     return next(action);
   };

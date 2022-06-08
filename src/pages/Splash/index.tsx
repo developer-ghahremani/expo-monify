@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "@src/store";
 import { MainLayout } from "@src/components/layout";
 import React from "react";
 import { pageNames } from "@src/cosntant";
+import { setSelectedWallet } from "@src/store/selectedWallet";
 import { setUser } from "@src/store/user";
 import { showMessage } from "@src/utils/message";
 import { useEffect } from "react";
@@ -39,6 +40,8 @@ const SplashScreen = () => {
           name: data.firstName ? data.firstName : data.mobile,
         }),
       });
+      if (data.wallets && data.wallets[0])
+        dispatch(setSelectedWallet(data.wallets[0]));
       reset({ index: 0, routes: [{ name: pageNames.home.index }] });
     } catch (error) {
       console.log(error);
